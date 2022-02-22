@@ -43,29 +43,29 @@ const dummyAlgoAsset = {
   }
 };
 
-const genericAsset = {
+const ddo = {
   '@context': ['https://w3id.org/did/v1'],
-  id: 'testFakeDid',
+  id: 'did:op:efba17455c127a885ec7830d687a8f6e64f5ba559f8506f8723c1f10f05c049c',
   version: '4.0.0',
   chainId: 4,
   nftAddress: '0x0',
   metadata: {
     created: '2021-12-20T14:35:20Z',
     updated: '2021-12-20T14:35:20Z',
-    name: 'dataset-name',
     type: 'dataset',
-    description: 'Ocean protocol test dataset description',
-    author: 'oceanprotocol-team',
-    license: 'MIT',
-    tags: ['white-papers'],
-    additionalInformation: { 'test-key': 'test-value' },
-    links: ['http://data.ceda.ac.uk/badc/ukcp09/']
+    name: 'dfgdfgdg',
+    description: 'd dfgd fgd dfg dfgdfgd dfgdf',
+    tags: [''],
+    author: 'dd',
+    license: 'https://market.oceanprotocol.com/terms',
+    additionalInformation: {
+      termsAndConditions: true
+    }
   },
   services: [
     {
-      id: 'testFakeId',
+      id: 'notAnId',
       type: 'access',
-      description: 'Download service',
       files: '',
       datatokenAddress: '0xa15024b732A8f2146423D14209eFd074e61964F3',
       serviceEndpoint: 'https://providerv4.rinkeby.oceanprotocol.com',
@@ -82,4 +82,4 @@ const files = [
   }
 ]
 
-module.exports = { dummyAsset: dummyDataAsset, dummyAlgoAsset, genericAsset, files };
+module.exports = { ddo, files };

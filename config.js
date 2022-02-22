@@ -1,20 +1,30 @@
 require('dotenv').config()
+const HDWalletProvider = require("@truffle/hdwallet-provider");
+const fs = require("fs");
+const { homedir } = require('os');
+
 const networkUrl = process.env.networkUrl
-const aquarius = process.env.aquarius
-const providerUri = process.env.providerUri
+const provider = new HDWalletProvider(process.env.MNEMONIC, networkUrl);
+
+const addressData = JSON.parse(
+  fs.readFileSync(
+    process.env.ADDRESS_FILE ||
+    `${homedir}/.ocean/ocean-contracts/artifacts/address.json`,
+    'utf8'
+  )
+)
+
+const addresses = addressData[process.env.OCEAN_NETWORK]
 
 const urls = {
   networkUrl: networkUrl,
-  aquarius: aquarius,
-  providerUri: providerUri,
-};
-
-const walletConfig = {
-  mnemonic: process.env.MNEMONIC,
-  rpc: networkUrl,
+  aquarius: process.env.aquarius,
+  providerUrl: process.env.providerUrl
 };
 
 module.exports = {
   urls,
-  walletConfig
+  provider,
+  addresses
 };
+
