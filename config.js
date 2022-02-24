@@ -2,6 +2,7 @@ require('dotenv').config()
 const HDWalletProvider = require("@truffle/hdwallet-provider");
 const fs = require("fs");
 const { homedir } = require('os');
+const { ConfigHelper } = require("@oceanprotocol/lib");
 
 const networkUrl = process.env.networkUrl
 const provider = new HDWalletProvider(process.env.MNEMONIC, networkUrl);
