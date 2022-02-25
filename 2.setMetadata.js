@@ -1,14 +1,14 @@
 const { NftFactory, Nft, ProviderInstance, Datatoken, getHash, Aquarius } = require("@oceanprotocol/lib");
 const { SHA256 } = require('crypto-js');
 const Web3 = require("web3");
-const { provider, addresses, urls } = require('./config');
+const { provider, oceanConfig } = require('./config');
 const { ddo, files } = require('./data');
 
 const web3 = new Web3(provider);
-const aquarius = new Aquarius(urls.aquarius);
+const aquarius = new Aquarius(oceanConfig.metadataCacheUri);
 const nft = new Nft(web3);
-const providerUrl = urls.providerUrl;
-const Factory = new NftFactory(addresses.ERC721Factory, web3);
+const providerUrl = oceanConfig.providerUri;
+const Factory = new NftFactory(oceanConfig.erc721FactoryAddress, web3);
 
 const createDataNFT = async () => {
     const accounts = await web3.eth.getAccounts();
@@ -77,7 +77,7 @@ const setMetadata = async (erc721Address, datatokenAddress) => {
 
     const resolvedDDO = await aquarius.waitForAqua(ddo.id)
 
-    console.log("Resolved asset from aquarius\n", resolvedDDO)
+    console.log(`Resolved asset did [${ddo.id}]from aquarius.`)
 }
 
 createDataNFT().then(({ erc721Address,
@@ -95,4 +95,3 @@ createDataNFT().then(({ erc721Address,
     console.error(err);
     process.exit(1);
 })
-
