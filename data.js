@@ -1,48 +1,3 @@
-const dummyDataAsset = {
-  main: {
-    type: "dataset",
-    name: "test-dataset",
-    dateCreated: new Date(Date.now()).toISOString().split(".")[0] + "Z",
-    author: "test",
-    license: "MIT",
-    files: [
-      {
-        url: "https://raw.githubusercontent.com/trentmc/branin/main/branin.arff",
-        index: 0,
-        contentType: "text/text"
-      }
-    ],
-  },
-};
-
-const dummyAlgoAsset = {
-  main: {
-    type: 'algorithm',
-    name: 'Test Algo with Compute',
-    dateCreated: new Date(Date.now()).toISOString().split(".")[0] + "Z",
-    datePublished: new Date(Date.now()).toISOString().split(".")[0] + "Z",
-    author: 'DevOps',
-    license: 'CC-BY',
-    files: [
-      {
-        url: 'https://raw.githubusercontent.com/oceanprotocol/test-algorithm/master/javascript/algo.js',
-        contentType: 'text/js',
-        encoding: 'UTF-8'
-      }
-    ],
-    algorithm: {
-      language: 'js',
-      format: 'docker-image',
-      version: '0.1',
-      container: {
-        entrypoint: 'node $ALGO',
-        image: 'node',
-        tag: '10'
-      }
-    }
-  }
-};
-
 const ddo = {
   '@context': ['https://w3id.org/did/v1'],
   id: 'did:op:efba17455c127a885ec7830d687a8f6e64f5ba559f8506f8723c1f10f05c049c',
@@ -72,7 +27,7 @@ const ddo = {
       timeout: 0
     }
   ]
-}
+};
 
 const files = [
   {
@@ -80,6 +35,6 @@ const files = [
     url: 'https://raw.githubusercontent.com/oceanprotocol/testdatasets/main/shs_dataset_test.txt',
     method: 'GET'
   }
-]
+];
 
 module.exports = { ddo, files };

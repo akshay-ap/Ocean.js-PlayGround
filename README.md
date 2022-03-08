@@ -26,8 +26,8 @@ git checkout v4
    ```bash
    npm i
    ```
-2. Create a `.env` file. See `.sample.env` and update  
-3. Setup Ocean components locally: `https://github.com/oceanprotocol/barge/tree/v4`
+1. Create a `.env` file. See `.sample.env` and update
+1. Setup Ocean components locally: `https://github.com/oceanprotocol/barge/tree/v4`
 
 ## Usage
 

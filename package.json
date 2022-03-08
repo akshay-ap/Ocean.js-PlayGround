@@ -16,5 +16,11 @@
     "dotenv": "^16.0.0",
     "hardhat-project": "file:../contracts",
     "web3": "^1.7.0"
+  },
+  "devDependencies": {
+    "eslint": "^8.10.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-plugin-import": "^2.25.4",
+    "prettier": "2.5.1"
   }
 }
