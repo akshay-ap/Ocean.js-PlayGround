@@ -22,8 +22,8 @@ const ddo = {
       id: 'notAnId',
       type: 'access',
       files: '',
-      datatokenAddress: '0xa15024b732A8f2146423D14209eFd074e61964F3',
-      serviceEndpoint: 'https://providerv4.rinkeby.oceanprotocol.com',
+      datatokenAddress: '0x0',
+      serviceEndpoint: 'http://172.15.0.4:8030',
       timeout: 0
     }
   ]
