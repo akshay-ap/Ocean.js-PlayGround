@@ -9,7 +9,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@oceanprotocol/lib": "file:../ocean.js",
+    "@oceanprotocol/lib": "^1.0.0",
     "@truffle/hdwallet-provider": "^2.0.3",
     "chai": "^4.3.6",
     "crypto-js": "^4.1.1",
