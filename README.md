@@ -2,28 +2,37 @@
 
 A repository to play with [Ocean.js](https://github.com/oceanprotocol/ocean.js)
 
-# Setup
+## Setup
 
-1. `npm i`
+### Clone contracts and ocean.js
 
-2. Setup Ocean components locally: `https://github.com/oceanprotocol/barge/tree/v3`
+```bash
+git@github.com:oceanprotocol/contracts.git ..
+git checkout v4main
+```
 
-3. Change the config in `config.js`.
+```bash
+git@github.com:oceanprotocol/ocean.js.git ..
+git checkout v4
+```
 
-   The addresses for the contracts will be available at path below:
+### Setup this repo
 
-   `~/.ocean/ocean-contracts/artifacts/address.json`
+1. Clone
+   ```bash
+   git@github.com:akshay-ap/Ocean.js-PlayGround.git
+   ```
+1. Install dependencies
+   ```bash
+   npm i
+   ```
+1. Create a `.env` file. See `.sample.env` and update
+1. Setup Ocean components locally: `https://github.com/oceanprotocol/barge/tree/v4`
 
-# Usage
+## Usage
 
 `node <filename>`
 
-e.g.
+### Example
 
-`node 1_CreateDataToken.js`
-
-# Accounts
-
-Alice: `account[0]`
-
-Bob: `account[1]`
+`node createDataNFT.js`

@@ -9,8 +9,18 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@oceanprotocol/contracts": "^0.5.6",
-    "@oceanprotocol/lib": "^0.6.5",
-    "web3": "^1.3.0"
+    "@oceanprotocol/lib": "^1.0.0",
+    "@truffle/hdwallet-provider": "^2.0.3",
+    "chai": "^4.3.6",
+    "crypto-js": "^4.1.1",
+    "dotenv": "^16.0.0",
+    "hardhat-project": "file:../contracts",
+    "web3": "^1.7.0"
+  },
+  "devDependencies": {
+    "eslint": "^8.10.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-plugin-import": "^2.25.4",
+    "prettier": "2.5.1"
   }
 }
