@@ -2,13 +2,16 @@ const {
   NftFactory,
   Nft,
   ProviderInstance,
+  Datatoken,
   getHash,
   Aquarius
 } = require('@oceanprotocol/lib');
 const { SHA256 } = require('crypto-js');
 const Web3 = require('web3');
 const { provider, oceanConfig } = require('./config');
-const { ddo, files } = require('./data');
+
+const { dataDDo, datasetUrl } = require('./sample_ddo/dataDDo');
+const { algoDDo, algoAssetUrl } = require('./sample_ddo/algo');
 
 const web3 = new Web3(provider);
 const aquarius = new Aquarius(oceanConfig.metadataCacheUri);
@@ -16,7 +19,22 @@ const nft = new Nft(web3);
 const providerUrl = oceanConfig.providerUri;
 const Factory = new NftFactory(oceanConfig.erc721FactoryAddress, web3);
 
-const createDataNFT = async () => {
+const mintAndtransfer = async (
+  datatokenAddress,
+  publisherAccount,
+  publisherAddress,
+  consumerAddress
+) => {
+  const datatoken = new Datatoken(web3);
+  await datatoken.mint(
+    datatokenAddress,
+    publisherAddress,
+    '100',
+    consumerAddress
+  );
+};
+
+const createDataNFTWithMetadata = async (ddo, files) => {
   const accounts = await web3.eth.getAccounts();
   const publisherAccount = accounts[0];
 
@@ -48,20 +66,11 @@ const createDataNFT = async () => {
   const erc721Address = result.events.NFTCreated.returnValues[0];
   const datatokenAddress = result.events.TokenCreated.returnValues[0];
 
-  return {
-    erc721Address,
-    datatokenAddress
-  };
-};
-
-const setMetadata = async (erc721Address, datatokenAddress) => {
-  const accounts = await web3.eth.getAccounts();
-  const publisherAccount = accounts[0];
-
   // create the files encrypted string
   let providerResponse = await ProviderInstance.encrypt(files, providerUrl);
   ddo.services[0].files = await providerResponse;
   ddo.services[0].datatokenAddress = datatokenAddress;
+  ddo.services[0].serviceEndpoint = providerUrl;
   // update ddo and set the right did
   ddo.nftAddress = erc721Address;
   const chain = await web3.eth.getChainId();
@@ -84,22 +93,26 @@ const setMetadata = async (erc721Address, datatokenAddress) => {
     `0x${metadataHash}`
   );
 
-  await aquarius.waitForAqua(ddo.id);
+  await mintAndtransfer(
+    datatokenAddress,
+    publisherAccount,
+    publisherAccount,
+    accounts[1]
+  );
 
-  console.log(`Resolved asset did [${ddo.id}]from aquarius.`);
+  return ddo.id;
 };
 
-createDataNFT()
-  .then(({ erc721Address, datatokenAddress }) => {
-    console.log(`DataNft address ${erc721Address}`);
-    console.log(`Datatoken address ${datatokenAddress}`);
-
-    setMetadata(erc721Address, datatokenAddress).then(() => {
-      console.log('Metadata set.');
-      process.exit();
-    });
-  })
-  .catch((err) => {
-    console.error(err);
-    process.exit(1);
-  });
+(async () => {
+  try {
+    const dataDid = await createDataNFTWithMetadata(dataDDo, datasetUrl);
+    console.log(`Dataset did ${dataDid}`);
+    const algoDid = await createDataNFTWithMetadata(algoDDo, algoAssetUrl);
+    console.log(`Algo did ${algoDid}`);
+    process.exit();
+  } catch (e) {
+    console.log(e);
+  }
+})().catch((error) => {
+  throw error;
+});
