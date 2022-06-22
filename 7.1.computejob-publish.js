@@ -37,7 +37,6 @@ const mintAndtransfer = async (
 const createDataNFTWithMetadata = async (ddo, files) => {
   const accounts = await web3.eth.getAccounts();
   const publisherAccount = accounts[0];
-
   const nftParams = {
     name: '72120Bundle',
     symbol: '72Bundle',
