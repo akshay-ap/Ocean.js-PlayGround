@@ -28,7 +28,7 @@ const createDataNFT = async () => {
     minter: publisherAccount,
     mpFeeAddress: '0x0000000000000000000000000000000000000000'
   };
-  
+
   const result = await Factory.createNftWithErc20(
     publisherAccount,
     nftParams,
