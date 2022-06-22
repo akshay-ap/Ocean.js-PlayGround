@@ -9,19 +9,21 @@ const createDataNFT = async () => {
 
   const accounts = await web3.eth.getAccounts();
   const publisherAccount = accounts[0];
-
+ 
   const nftParams = {
-    name: 'testNFT',
-    symbol: 'TST',
+    name: '72120Bundle',
+    symbol: '72Bundle',
     templateIndex: 1,
-    tokenURI: ''
+    tokenURI: 'https://example.com',
+    transferable: true,
+    owner: publisherAccount
   };
 
   const erc20Params = {
     templateIndex: 1,
     cap: '100000',
     feeAmount: '0',
-    feeManager: '0x0000000000000000000000000000000000000000',
+    paymentCollector: '0x0000000000000000000000000000000000000000',
     feeToken: '0x0000000000000000000000000000000000000000',
     minter: publisherAccount,
     mpFeeAddress: '0x0000000000000000000000000000000000000000'

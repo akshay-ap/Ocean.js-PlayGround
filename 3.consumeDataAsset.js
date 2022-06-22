@@ -10,31 +10,34 @@ const {
 const { SHA256 } = require('crypto-js');
 const fs = require('fs');
 const Web3 = require('web3');
-const { provider, addresses, urls } = require('./config');
+const { provider, oceanConfig } = require('./config');
+
 const { ddo, files } = require('./data');
 
 const web3 = new Web3(provider);
-const aquarius = new Aquarius(urls.aquarius);
+const aquarius = new Aquarius(oceanConfig.metadataCacheUri);
 const nft = new Nft(web3);
-const { providerUrl } = urls;
-const Factory = new NftFactory(addresses.ERC721Factory, web3);
+const providerUrl = oceanConfig.providerUri;
+const Factory = new NftFactory(oceanConfig.erc721FactoryAddress, web3);
 
 const createDataNFTWithMetadata = async () => {
   const accounts = await web3.eth.getAccounts();
   const publisherAccount = accounts[0];
 
   const nftParams = {
-    name: 'testNFT',
-    symbol: 'TST',
+    name: '72120Bundle',
+    symbol: '72Bundle',
     templateIndex: 1,
-    tokenURI: ''
+    tokenURI: 'https://example.com',
+    transferable: true,
+    owner: publisherAccount
   };
 
   const erc20Params = {
     templateIndex: 1,
     cap: '100000',
     feeAmount: '0',
-    feeManager: '0x0000000000000000000000000000000000000000',
+    paymentCollector: '0x0000000000000000000000000000000000000000',
     feeToken: '0x0000000000000000000000000000000000000000',
     minter: publisherAccount,
     mpFeeAddress: '0x0000000000000000000000000000000000000000'
