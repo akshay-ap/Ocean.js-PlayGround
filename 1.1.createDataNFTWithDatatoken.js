@@ -1,8 +1,8 @@
 const { NftFactory } = require('@oceanprotocol/lib');
 const Web3 = require('web3');
-const { provider, oceanConfig } = require('./config');
+const { web3Provider, oceanConfig } = require('./config');
 
-const web3 = new Web3(provider);
+const web3 = new Web3(web3Provider);
 
 const createDataNFT = async () => {
   const Factory = new NftFactory(oceanConfig.erc721FactoryAddress, web3);

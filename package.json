@@ -9,11 +9,11 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@oceanprotocol/lib": "^1.1.2",
+    "@oceanprotocol/lib": "^1.1.5",
     "@truffle/hdwallet-provider": "^2.0.3",
     "chai": "^4.3.6",
     "crypto-js": "^4.1.1",
-    "dotenv": "^16.0.0",
+    "dotenv": "^16.0.1",
     "hardhat-project": "file:../contracts",
     "web3": "^1.7.0"
   },
