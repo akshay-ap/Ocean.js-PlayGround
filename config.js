@@ -34,7 +34,7 @@ if (process.env.OCEAN_NETWORK === 'development') {
 
 oceanConfig = {
   ...oceanConfig,
-  nodeUri: process.env.NETWORK_URL,
+  nodeUri: process.env.OCEAN_NETWORK_URL,
   // Set optional properties - Provider URL and Aquarius URL
   metadataCacheUri: process.env.AQUARIUS_URL || oceanConfig.metadataCacheUri,
   providerUri: process.env.PROVIDER_URL || oceanConfig.providerUri
