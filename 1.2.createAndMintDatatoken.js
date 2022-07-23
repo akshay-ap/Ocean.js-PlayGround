@@ -1,8 +1,8 @@
 const { NftFactory, Datatoken } = require('@oceanprotocol/lib');
 const Web3 = require('web3');
-const { provider, oceanConfig } = require('./config');
+const { web3Provider, oceanConfig } = require('./config');
 
-const web3 = new Web3(provider);
+const web3 = new Web3(web3Provider);
 
 const createDataNFT = async () => {
   const Factory = new NftFactory(oceanConfig.erc721FactoryAddress, web3);
@@ -47,10 +47,9 @@ const createDataNFT = async () => {
 const mintDatatoken = async (datatokenAddress) => {
   const accounts = await web3.eth.getAccounts();
   const publisherAccount = accounts[0];
-  const consumerAccount = accounts[1];
+  const consumerAccount = publisherAccount;
 
   const datatoken = new Datatoken(web3);
-
   await datatoken.mint(
     datatokenAddress,
     publisherAccount,
