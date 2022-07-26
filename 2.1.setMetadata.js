@@ -7,10 +7,10 @@ const {
 } = require('@oceanprotocol/lib');
 const { SHA256 } = require('crypto-js');
 const Web3 = require('web3');
-const { provider, oceanConfig } = require('./config');
+const { web3Provider, oceanConfig } = require('./config');
 const { ddo, files } = require('./data');
 
-const web3 = new Web3(provider);
+const web3 = new Web3(web3Provider);
 const aquarius = new Aquarius(oceanConfig.metadataCacheUri);
 const nft = new Nft(web3);
 const providerUrl = oceanConfig.providerUri;

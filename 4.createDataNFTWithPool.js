@@ -1,10 +1,10 @@
 const { NftFactory } = require('@oceanprotocol/lib');
 const Web3 = require('web3');
 
-const { provider, addresses } = require('./config');
+const { web3Provider, oceanConfig } = require('./config');
 
-const web3 = new Web3(provider);
-const factory = new NftFactory(addresses.ERC721Factory, web3);
+const web3 = new Web3(web3Provider);
+const factory = new NftFactory(oceanConfig.erc721FactoryAddress, web3);
 
 const createDataNFTWithPool = async () => {
   const accounts = await web3.eth.getAccounts();
@@ -30,12 +30,12 @@ const createDataNFTWithPool = async () => {
   };
 
   const poolParams = {
-    ssContract: addresses.Staking,
-    baseTokenAddress: addresses.MockDAI,
-    baseTokenSender: addresses.ERC721Factory,
+    ssContract: oceanConfig.sideStakingAddress,
+    baseTokenAddress: oceanConfig.oceanTokenAddress,
+    baseTokenSender: oceanConfig.erc721FactoryAddress,
     publisherAddress: accounts[0],
     marketFeeCollector: accounts[0],
-    poolTemplateAddress: addresses.poolTemplate,
+    poolTemplateAddress: oceanConfig.poolTemplateAddress,
     rate: '1',
     baseTokenDecimals: 18,
     vestingAmount: '10000',
