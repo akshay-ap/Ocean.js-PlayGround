@@ -1,16 +1,27 @@
 const { ProviderInstance, Aquarius } = require('@oceanprotocol/lib');
 const Web3 = require('web3');
 const { provider, oceanConfig } = require('./config');
+const HDWalletProvider = require('@truffle/hdwallet-provider');
 
 const web3 = new Web3(provider);
 const aquarius = new Aquarius(oceanConfig.metadataCacheUri);
 const providerUrl = oceanConfig.providerUri;
 
+const getConsumerAccount = async () => {
+
+  const web3Provider2 = new HDWalletProvider(
+    process.env.PRIVATE_KEY2,
+    oceanConfig.nodeUri
+  );
+  const web3Consumer = new Web3(web3Provider2);
+  const consumerAccount = (await web3Consumer.eth.getAccounts())[0];
+  return consumerAccount;
+}
+
 const startComputeJob = async (algoDid, datasetDid) => {
   const resolvedDataDdo = await aquarius.waitForAqua(datasetDid);
   const resolvedAlgoDdo = await aquarius.waitForAqua(algoDid);
-  const accounts = await web3.eth.getAccounts();
-  const consumerAccount = accounts[1];
+  const consumerAccount = await getConsumerAccount();
 
   const computeEnvs = await ProviderInstance.getComputeEnvironments(
     providerUrl
@@ -65,10 +76,10 @@ const startComputeJob = async (algoDid, datasetDid) => {
 };
 const startCompute = async () => {
   const datasetDid =
-    'did:op:33e1a5c53e81814f3125e393408112f2c30154be7a2c7063ff6d204695469c3e';
+    'did:op:658292ed40d5a274a06aaf8b491d7d72c444a60b06615035521e4a791076c874';
 
   const algoDid =
-    'did:op:bd6a13b6b3a6aabc514963ccf8349d75584c96f34d730239fb8bac45b2c63d86';
+    'did:op:1900f36a18d2d7fd169a776c0d5686be694750d5c103e23e34b8c53395d4e435';
 
   await startComputeJob(algoDid, datasetDid);
 };
