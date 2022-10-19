@@ -9,12 +9,14 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@oceanprotocol/lib": "^1.1.6",
+    "@oceanprotocol/lib": "^2.3.0",
     "@truffle/hdwallet-provider": "^2.0.3",
+    "axios": "^0.27.2",
     "chai": "^4.3.6",
     "crypto-js": "^4.1.1",
     "dotenv": "^16.0.1",
     "hardhat-project": "file:../contracts",
+    "node-fetch": "^3.2.10",
     "web3": "^1.7.0"
   },
   "devDependencies": {

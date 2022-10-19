@@ -3,6 +3,7 @@ require('dotenv').config();
 const HDWalletProvider = require('@truffle/hdwallet-provider');
 const fs = require('fs');
 const { homedir } = require('os');
+const Web3 = require('web3');
 const { ConfigHelper } = require('@oceanprotocol/lib');
 
 // Get configuration for the given network
@@ -13,8 +14,8 @@ let oceanConfig = new ConfigHelper().getConfig(process.env.OCEAN_NETWORK);
 if (process.env.OCEAN_NETWORK === 'development') {
   const addressData = JSON.parse(
     fs.readFileSync(
-      process.env.ADDRESS_FILE
-      || `${homedir}/.ocean/ocean-contracts/artifacts/address.json`,
+      process.env.ADDRESS_FILE ||
+        `${homedir}/.ocean/ocean-contracts/artifacts/address.json`,
       'utf8'
     )
   );
@@ -45,7 +46,10 @@ const web3Provider = new HDWalletProvider(
   oceanConfig.nodeUri
 );
 
+const web3Instance = new Web3(oceanConfig.nodeUri);
+
 module.exports = {
   web3Provider,
-  oceanConfig
+  oceanConfig,
+  web3Instance
 };
