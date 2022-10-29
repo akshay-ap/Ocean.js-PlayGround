@@ -37,7 +37,7 @@ const getEResult = async () => {
     providerUrl,
     web3Instance,
     '0xdF1dEc52e602020E27B0644Ea0F584b6Eb5CE4eA',
-    '4fcce0d8a2f74767a766dbc8903b3046',
+    'd1345d72477649f8a2bda2062c4c17f9',
     0
   );
   console.log('res', res);

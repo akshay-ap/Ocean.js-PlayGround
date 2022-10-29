@@ -73,7 +73,7 @@ async function handleOrder(
   serviceIndex,
   consumeMarkerFee
 ) {
-  datatoken = new Datatoken(web3);
+  let datatoken = new Datatoken(web3);
   if (order.providerFee && order.providerFee.providerFeeAmount) {
     console.log('To do');
     // await approveWei(
@@ -125,7 +125,8 @@ const startComputeJob = async (
   const assets = [
     {
       documentId: resolvedDataDdo.id,
-      serviceId: resolvedDataDdo.services[0].id
+      serviceId: resolvedDataDdo.services[0].id,
+      userdata: datasetInput
     }
   ];
   const dtAddressArray = [resolvedDataDdo.services[0].datatokenAddress];
@@ -133,9 +134,7 @@ const startComputeJob = async (
   const algo = {
     documentId: resolvedAlgoDdo.id,
     serviceId: resolvedAlgoDdo.services[0].id,
-    algocustomdata: {
-      'my-custom-input': 'add new key value pairs as needed'
-    }
+    algocustomdata: algorithmInput
   };
 
   const mytime = new Date();
@@ -309,13 +308,21 @@ const getEndpointURL = (servicesEndpoints, serviceName) => {
 
 const startCompute = async () => {
   const datasetDid =
-    'did:op:9f5591a01c122b6d3bcd61b80216bb539aac6882372e2c95de895cdebeaa1466';
+    'did:op:b3ca139ac816cc0afc2484f33fc48d164786d64887c141a300d1896419d145b3';
 
   const algoDid =
-    'did:op:fb8d24aff3cdf29dc9fbd15d31a27cb0e06de7f345cd8543fc67269f612c0c3e';
+    'did:op:dc01470e0ec34abdc469379628e08e9abc472af1845e0b70e92457883a0c392c';
 
-  const algorithmInput = {};
-  const datasetInput = {};
+  const algorithmInput = {
+    view: 'compute-data',
+    'query-type': 'all',
+    'design-doc': 'brainstem'
+  };
+  const datasetInput = {
+    view: 'compute-data',
+    'query-type': 'all',
+    'design-doc': 'brainstem'
+  };
 
   await startComputeJob(algoDid, datasetDid, datasetInput, algorithmInput);
 };

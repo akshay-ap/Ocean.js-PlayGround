@@ -9,7 +9,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@oceanprotocol/lib": "^2.3.0",
+    "@oceanprotocol/lib": "^2.4.0",
     "@truffle/hdwallet-provider": "^2.0.3",
     "axios": "^0.27.2",
     "chai": "^4.3.6",
